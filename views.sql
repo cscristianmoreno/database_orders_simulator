@@ -2,7 +2,7 @@ DROP VIEW IF EXISTS view_data;
 
 CREATE OR REPLACE VIEW view_data AS SELECT 
 	CONCAT(c.name, ' ', c.lastname) AS full_name,
-	COUNT(o.client_id) AS orders,
+	COUNT(o.client_id) AS count_orders,
 	MIN(o.date_order::timestamp(0)) AS first_order_date,
 	(get_days_transcurred(MIN(o.date_order))) AS first_order_at,
 	MAX(o.date_order::timestamp(0)) AS last_order_date,
@@ -29,7 +29,5 @@ GROUP BY
 	c.name,
 	c.lastname,
 	c.phone
-ORDER BY orders DESC;
-	
-SELECT * FROM view_data;
+ORDER BY count_orders DESC;
 	

@@ -7,3 +7,5 @@ DO $$
 		CALL insert_payments();
 	END;
 $$;
+
+SELECT * FROM view_data;
