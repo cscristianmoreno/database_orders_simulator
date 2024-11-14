@@ -136,18 +136,6 @@ CREATE OR REPLACE FUNCTION get_random_orders_details() RETURNS SETOF orders_deta
 	END;
 $$ LANGUAGE plpgsql;
 
-CREATE OR REPLACE FUNCTION update_product_stock(product_quantity integer, product_id integer) RETURNS SETOF products AS $$
-	BEGIN
-		UPDATE products SET quantity = quantity - product_quantity WHERE id = product_id;
-		RETURN 
-			QUERY
-				SELECT * 
-				FROM products 
-				WHERE id = product_id;
-				
-	END;
-$$ LANGUAGE plpgsql;
-
 CREATE OR REPLACE FUNCTION get_percent(integer) RETURNS decimal AS $$
 	DECLARE
 		percent DECIMAL;
